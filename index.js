@@ -13,7 +13,7 @@ app.get('/', (_request, response) => {
 });
 
 app.get('/talkers', (req, res) => {
-  res.status(200).json({ message: 'Abrindo o PR para o amigo marciano!'});
+  res.status(200).json({ message: 'Abrindo o PR para o amigo marciano!' });
 });
 
 app.listen(PORT, () => {
