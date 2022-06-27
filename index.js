@@ -1,6 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs').promises;
+const sortingString = require('./function1');
+const { emailValidate, checkingEmail } = require('./function2');
+const { passwordValidate, checkingPassword } = require('./function3');
 
 const app = express();
 app.use(bodyParser.json());
@@ -13,29 +16,14 @@ const readArchive = async (fileName) => {
   return JSON.parse(archiveJson);
 };
 
-// Função de gerar os negócios aleatórios nas strings
-function createToken(numchar) {
-  let token = '';
-  const stringSorted = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
-  for (let i = 0; i < numchar; i += 1) {
-    const random = parseInt((Math.random() * 36), 0);
-    token = `${token}${(stringSorted[random])}`;
-  }
-
-  return token;
-}
-
-createToken(16);
-
-module.exports = createToken;
-
+// Redireciona para /talker
 app.get('/talker', async (_req, res) => {
   const palestrantes = await readArchive('./talker.json');
 
   return res.status(200).json(palestrantes);
 });
 
+// Pega os palestrinhas e vê se encontra
 app.get('/talker/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -44,6 +32,17 @@ app.get('/talker/:id', async (req, res) => {
 
   if (!palestrante) return res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
   return res.status(200).json(palestrante);
+});
+
+// Recebe dados e retorna o tokenzinho
+  app.post('/login', 
+  checkingEmail, 
+  emailValidate, 
+  passwordValidate,
+  checkingPassword,
+  (_req, res) => {
+    const tokenGerado = sortingString(16);
+  return res.status(200).json({ token: tokenGerado });
 });
 
 // não remova esse endpoint, e para o avaliador funcionar
