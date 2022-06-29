@@ -47,8 +47,8 @@ app.get('/talker/:id', async (req, res) => {
   app.post('/login', 
   checkingEmail, 
   emailValidate, 
-  passwordValidate,
   checkingPassword,
+  passwordValidate,
   (_req, res) => {
     const tokenGerado = sortingString(16);
   return res.status(200).json({ token: tokenGerado });
