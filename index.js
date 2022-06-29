@@ -1,9 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs').promises;
-const sortingString = require('./function1');
-const { emailValidate, checkingEmail } = require('./function2');
-const { passwordValidate, checkingPassword } = require('./function3');
+const sortingString = require('./middleware/function1');
+const { emailValidate, checkingEmail } = require('./middleware/function2');
+const { passwordValidate, checkingPassword } = require('./middleware/function3');
+const validToken = require('./middleware/function4');
 
 const app = express();
 app.use(bodyParser.json());
@@ -43,6 +44,9 @@ app.get('/talker/:id', async (req, res) => {
   (_req, res) => {
     const tokenGerado = sortingString(16);
   return res.status(200).json({ token: tokenGerado });
+});
+
+app.post('/talker', validToken, () => {
 });
 
 // não remova esse endpoint, e para o avaliador funcionar
