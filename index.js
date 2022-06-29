@@ -1,15 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs').promises;
-const sortingString = require('./middleware/function1');
-const { emailValidate, checkingEmail } = require('./middleware/function2');
-const { passwordValidate, checkingPassword } = require('./middleware/function3');
-const validToken = require('./middleware/function4');
-const validNames = require('./middleware/function5');
-const validAges = require('./middleware/function6');
-const talkExists = require('./middleware/function7');
-const dateFormate = require('./middleware/function8');
-const rating = require('./middleware/function9');
+const sortingString = require('./middleware/sortingString');
+const { emailValidate, checkingEmail } = require('./middleware/checkingEmail');
+const { passwordValidate, checkingPassword } = require('./middleware/checkingPassword');
+const validToken = require('./middleware/validToken');
+const validNames = require('./middleware/validNames');
+const validAges = require('./middleware/validAges');
+const talkExists = require('./middleware/talkExists');
+const dateFormate = require('./middleware/dateFormate');
+const rating = require('./middleware/rating');
 
 const arquivo = 'talker.json';
 
