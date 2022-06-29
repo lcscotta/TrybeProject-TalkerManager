@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs').promises;
-const sortingString = require('./middleware/sortingString');
+
+const sortingString = require('./sortingString');
 const { emailValidate, checkingEmail } = require('./middleware/checkingEmail');
 const { passwordValidate, checkingPassword } = require('./middleware/checkingPassword');
 const validToken = require('./middleware/validToken');
@@ -17,10 +18,10 @@ const app = express();
 app.use(bodyParser.json());
 
 const HTTP_OK_STATUS = 200;
-const PORT = '3000';
+const PORT = 3000;
 
 const readArchive = async (fileName) => {
-  const archiveJson = await fs.readArchive(fileName, 'utf-8');
+  const archiveJson = await fs.readFile(fileName, 'utf-8');
   return JSON.parse(archiveJson);
 };
 

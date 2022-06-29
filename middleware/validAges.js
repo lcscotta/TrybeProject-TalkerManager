@@ -1,4 +1,4 @@
-function validAges(req, res, next) {
+function validAge(req, res, next) {
     const { age } = req.body;
     const minAge = 18;
   
@@ -10,4 +10,4 @@ function validAges(req, res, next) {
     next();
   }
   
-  module.exports = validAges;
+  module.exports = validAge;

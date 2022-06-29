@@ -8,5 +8,4 @@ function sortingString(numchar) {
     }
     return token;
   }
-  sortingString(16);
   module.exports = sortingString; 

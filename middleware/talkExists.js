@@ -1,4 +1,4 @@
-function talkExists(req, res, next) {
+function validTalk(req, res, next) {
     const { talk } = req.body;
     if (talk === undefined || Object.keys(talk).length === 0) {
       return res.status(400).json({ message: 'O campo "talk" é obrigatório' });
@@ -12,4 +12,4 @@ function talkExists(req, res, next) {
     next();
   }
   
-  module.exports = talkExists; 
+  module.exports = validTalk; 
